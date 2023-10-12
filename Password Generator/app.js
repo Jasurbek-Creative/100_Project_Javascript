@@ -1,8 +1,8 @@
 const characterAmountRange = document.getElementById("characterAmountRange");
 const characterAmountNumber = document.getElementById("characterAmountNumber");
-const includeUppercaseEl = document.getElementById("includeUppercase");
-const includeNumbersEl = document.getElementById("includeNumbers");
-const includeSymbolsEl = document.getElementById("includeSymbols");
+const includeUppercaseElement = document.getElementById("includeUppercase");
+const includeNumbersElement = document.getElementById("includeNumbers");
+const includeSymbolsElement = document.getElementById("includeSymbols");
 const form = document.getElementById("passwordGeneratorForm");
 const passwordDisplay = document.getElementById("passwordDisplay");
 
@@ -20,16 +20,16 @@ characterAmountRange.addEventListener("input", syncCharacterAmount);
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const characterAmount = characterAmountNumber.value;
-  const includeUppercase = includeUppercaseEl.checked;
-  const includeNumbers = includeNumbersEl.checked;
-  const includeSymbols = includeSymbolsEl.checked;
+  const includeUppercase = includeUppercaseElement.checked;
+  const includeNumbers = includeNumbersElement.checked;
+  const includeSymbols = includeSymbolsElement.checked;
   const password = generatePassword(
     characterAmount,
     includeUppercase,
     includeNumbers,
     includeSymbols
   );
-  passwordDisplay.innerHTML = password;
+  passwordDisplay.innerText = password;
 });
 
 function generatePassword(
@@ -40,8 +40,8 @@ function generatePassword(
 ) {
   let charCodes = LOWERCASE_CHAR_CODES;
   if (includeUppercase) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES);
-  if (includeNumbers) charCodes = charCodes.concat(NUMBER_CHAR_CODES);
   if (includeSymbols) charCodes = charCodes.concat(SYMBOL_CHAR_CODES);
+  if (includeNumbers) charCodes = charCodes.concat(NUMBER_CHAR_CODES);
 
   const passwordCharacters = [];
   for (let i = 0; i < characterAmount; i++) {
@@ -62,6 +62,6 @@ function arrayFromLowToHigh(low, high) {
 
 function syncCharacterAmount(e) {
   const value = e.target.value;
-  characterAmountRange.value = value;
   characterAmountNumber.value = value;
+  characterAmountRange.value = value;
 }
